@@ -27,7 +27,7 @@ OBJ_DIR			=	objs/
 
 #LFT_PATH		=	$(addprefix $(LIBS_DIR), libft/)
 
-SRC				=	$(addprefix $(SRC_DIR), philosophers.c) \
+SRC				=	$(addprefix $(SRC_DIR), philosophers.c testes.c errors.c inicialization.c) \
 
 OBJ_DIRS		=	$(OBJ_DIR) $(addprefix $(OBJ_DIR), $(SRC_DIR)) \
 
@@ -35,7 +35,7 @@ OBJ				=	$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 $(NAME):			$(OBJ) | $(SRC) 
 # Pc da escola					$(CC) $(CFLAGS) -lreadline $^ -o $@ -I $(INC_DIR) -L$(LFT_PATH) -lft
-					$(CC) $(CFLAGS) $^ -o $@ -I $(INC_DIR)  -lreadline -lncurses
+					$(CC) $(CFLAGS) $^ -o $@ -I $(INC_DIR)  -pthread
 					printf '$(GREEN)$(NAME) compiled successfully!\n $(RESET)'
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c | $(OBJ_DIRS)
