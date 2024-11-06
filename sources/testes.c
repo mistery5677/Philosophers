@@ -175,6 +175,7 @@
 
 // Mutex --> Prevente que caso algum outro thread tente executar ao mesmo tempo, com o valor ja encrementado
 // ele nao vai conseguir por causa do lock.
+
 // int mails = 0;
 // pthread_mutex_t mutex; // Era como se fosse um thread, para o sistema perceber quando este thread acabar a execucao, os outros podem continuar
 
