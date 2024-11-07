@@ -6,14 +6,14 @@
 
 typedef struct s_philo
 {
-	pthread_t		t_philo;
+	pthread_t		id;
 	int name;
 } t_philo;
 
 typedef struct s_data
 {
-	pthread_t		*t_philo;
 	t_philo			*philos;
+	pthread_mutex_t	wait;
 	unsigned int	meals_number;
 	unsigned int	philos_num;
 	unsigned int	time_die;

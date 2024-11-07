@@ -44,10 +44,14 @@ void get_current_time(unsigned int *execute_time)
    	*execute_time = (current_time - start_time) * 1000;
 }
 
-void	*hello_world(void *arg)
+void	*hello_world(void *data)
 {
-	(void)arg;
-	printf("hello world");
+	t_data	*cpy;
+
+	cpy = data;
+	pthread_mutex_lock(&cpy->wait);
+	printf("hello world\n");
+	pthread_mutex_unlock(&cpy->wait);
 	return NULL;
 }
 
@@ -56,16 +60,14 @@ int seat_the_philos(t_data *data, char **argv)
 	unsigned int i;
 
 	i = 0;
+	pthread_mutex_init(&data->wait, NULL);
 	data->philos_num = ft_atoi(argv[1]);
-	data->t_philo = malloc(data->philos_num * sizeof(pthread_t));
+	data->philos = malloc((data->philos_num) * sizeof(t_philo));
 	if (!data->philos)
 		return (-1);
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
-	data->philos = malloc(data->philos_num * sizeof(t_philo));
-	if (!data->philos)
-		return (-1);
 	if (argv[5])
 		data->meals_number = ft_atoi(argv[5]);
 	else
@@ -74,7 +76,7 @@ int seat_the_philos(t_data *data, char **argv)
 	while (i < data->philos_num)
 	{
 		printf("Criou um thread\n");
-		if (pthread_create(&data->t_philo[i], NULL, hello_world, NULL) == -1)
+		if (pthread_create(&data->philos[i].id, NULL, hello_world, data) == -1)
 			return (-1);
 		i++;
 	}
