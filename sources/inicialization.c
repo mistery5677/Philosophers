@@ -75,9 +75,15 @@ int seat_the_philos(t_data *data, char **argv)
 	get_current_time(&(data)->start_time);
 	while (i < data->philos_num)
 	{
-		printf("Criou um thread\n");
+		//printf("Criou um thread\n");
 		if (pthread_create(&data->philos[i].id, NULL, hello_world, data) == -1)
 			return (-1);
+		i++;
+	}
+	i = 0;
+	while (i < data->philos_num)
+	{
+		pthread_join(data->philos[i].id, NULL);
 		i++;
 	}
 	return 0;

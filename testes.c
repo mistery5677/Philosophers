@@ -1,4 +1,4 @@
-#include "../includes/philosophers.h"
+// #include "includes/philosophers.h"
 
 // void *computation()
 // {
@@ -9,10 +9,18 @@
 // int main()
 // {
 //     pthread_t thread1;  //Vou declarar um thread
-
+//     pthread_t thread2;
+//     pthread_t thread3;
+//     pthread_t thread4;  //Vou declarar um thread
+//     pthread_t thread5;
+//     pthread_t thread6;
 //     pthread_create(&thread1, NULL, computation, NULL); //Vou dizer que o thread1, vai ter uma funcao "associada"
-
-//     pthread_join(thread1, NULL); //Vou chamar o thread previamente criado 
+//     pthread_create(&thread2, NULL, computation, NULL);
+//     pthread_create(&thread3, NULL, computation, NULL);
+//     pthread_create(&thread4, NULL, computation, NULL); //Vou dizer que o thread1, vai ter uma funcao "associada"
+//     pthread_create(&thread5, NULL, computation, NULL);
+//     pthread_create(&thread6, NULL, computation, NULL);
+//     pthread_join(thread5, NULL); //Vou chamar o thread previamente criado 
 
 //     return 0;
 // }
@@ -246,4 +254,54 @@
 //     return 0;
 // }
 
-// NOTE: Deadlock e quando tentamos dar lock ao mutex, duas vezes
+// NOTE: Deadlock e quando tentamos dar lock ao mutex, duas vezesx
+
+// TESTANDO COM MUITOS THREADS //
+
+// #include <stdio.h>       
+// #include <pthread.h>
+// #include <sys/time.h>
+// #include <stdlib.h>
+// #include <unistd.h>
+
+// #ifndef NUM_THREADS
+// #define NUM_THREADS 10
+// #endif
+
+
+// pthread_mutex_t print_mutex;  // Declaração do mutex
+// int mails = 0;
+// void *funcao(void *argumentos)
+// {
+//    pthread_mutex_lock(&print_mutex);  // Bloqueia o mutex
+//    for(int x = 0; x <= 100000; x++)
+//     mails++;
+//    pthread_mutex_unlock(&print_mutex);  // Desbloqueia o mutex
+//    return NULL;
+// }
+
+// int main()
+// {
+//   pthread_t threads[NUM_THREADS - 2];
+//   int i;
+
+//   // Inicializa o mutex antes de criar as threads
+//   pthread_mutex_init(&print_mutex, NULL);
+
+//   for(i = 0; i < NUM_THREADS - 2; i++)
+//   {
+//     printf("vou criar o thread %d\n", i);
+//        pthread_create(&threads[i], NULL, funcao, &i);
+//   }
+
+
+//   printf("Thread principal a esperar a terminação das threads criadas NUM_THREADS\n");
+//         for(i = 0; i < NUM_THREADS - 2; i++)
+//             pthread_join(threads[i], NULL);  // Espera pela conclusão de cada thread
+//     printf("mails %d\n", mails);
+//   // Destroi o mutex após o uso
+//   pthread_mutex_destroy(&print_mutex);
+
+//   return 0;
+// }
+// // }

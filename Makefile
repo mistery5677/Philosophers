@@ -27,7 +27,7 @@ OBJ_DIR			=	objs/
 
 #LFT_PATH		=	$(addprefix $(LIBS_DIR), libft/)
 
-SRC				=	$(addprefix $(SRC_DIR), philosophers.c testes.c errors.c inicialization.c) \
+SRC				=	$(addprefix $(SRC_DIR), philosophers.c errors.c inicialization.c) \
 
 OBJ_DIRS		=	$(OBJ_DIR) $(addprefix $(OBJ_DIR), $(SRC_DIR)) \
 
