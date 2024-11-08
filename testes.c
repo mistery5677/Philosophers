@@ -1,4 +1,4 @@
-// #include "includes/philosophers.h"
+#include "includes/philosophers.h"
 
 // void *computation()
 // {
@@ -193,7 +193,7 @@
 //     {
 //         pthread_mutex_lock(&mutex); // Caso haja um data race, vai prevenir que o segundo thread, tente correr o programa
 //         mails++;
-//         pthread_mutex_unlock(&mutex);
+//        pthread_mutex_unlock(&mutex);
 //     }
 //     return NULL;
 // }

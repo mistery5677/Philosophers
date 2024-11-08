@@ -6,14 +6,16 @@
 
 typedef struct s_philo
 {
-	pthread_t		id;
 	int name;
+	pthread_t		id;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 } t_philo;
 
 typedef struct s_data
 {
 	t_philo			*philos;
-	pthread_mutex_t	wait;
+	pthread_mutex_t	*forks;
 	unsigned int	meals_number;
 	unsigned int	philos_num;
 	unsigned int	time_die;
