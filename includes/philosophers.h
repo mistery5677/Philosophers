@@ -42,6 +42,9 @@ unsigned int 	get_current_time(t_data *data);
 /*   INICIALIZATION   */
 int seat_the_philos(t_data *data, char **argv);
 
+/*	 ROUTINE   */
+void	*routine(void *data);
+
 /*   ACTIONS   */
 void	eat(t_philo *philo);
 

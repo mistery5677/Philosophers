@@ -1,32 +1,5 @@
 #include "../includes/philosophers.h"
 
-void	*routine(void *data)
-{
-	t_philo *philo = (t_philo *)data;
-
-	while (philo->id % 2 == 0 && philo->data->eating < philo->data->philos_num / 2)
-	{
-		//printf("eating %d\n", philo->data->eating);
-		continue ;
-	}
-	printf("eating %d\n", philo->data->eating);
-	eat(philo);
-
-	//    FORMA DE ORDENAR AS THREADS
-	// while(philo->data->philos_num + 1 != philo->data->ready) // Temos de colocar o +1 por causa da ultima incrementacao
-	// {
-	// 	//printf("philo name %d    ready %d\n", philo->name, philo->data->ready);
-	// 	if (philo->name == philo->data->ready)
-	// 	{
-	// 		printf("seated %d\n", philo->name);
-	// 		philo->data->ready++;
-	// 		break ;
-	// 	}
-	// 	continue ;
-	// }
-	return NULL;
-}
-
 int seat_the_philos(t_data *data, char **argv)
 {
 	unsigned int i;
@@ -47,6 +20,7 @@ int seat_the_philos(t_data *data, char **argv)
 		data->meals_number = -1;
 	data->eating = 0;
 	data->start_time = get_start_time();
+	printf("start time %d | 	\n", data->start_time);
 	//printf("A simulacao comecou %d\n", data->start_time);
 
 

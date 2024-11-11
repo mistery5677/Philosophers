@@ -14,5 +14,6 @@ unsigned int get_start_time()
 
 unsigned int get_current_time(t_data *data)
 {
-    return (get_start_time() - data->start_time);
+    unsigned int current_time = get_start_time();
+    return (current_time - data->start_time);
 }
