@@ -13,14 +13,12 @@ int seat_the_philos(t_data *data, char **argv)
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
-	data->ready = 1;
 	if (argv[5])
 		data->meals_number = ft_atoi(argv[5]);
 	else
-		data->meals_number = -1;
-	data->eating = 0;
-	data->start_time = get_start_time();
-	printf("start time %d | 	\n", data->start_time);
+		data->meals_number = 1;  //Tenho de mudar antes de entregar o projeto
+	data->start_time = get_current_time();
+	//printf("start time %d | 	\n", data->start_time);
 	//printf("A simulacao comecou %d\n", data->start_time);
 
 

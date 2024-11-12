@@ -1,6 +1,6 @@
 #include "../includes/philosophers.h"
 
-unsigned int get_start_time()
+unsigned int get_current_time()
 {
     struct timeval time;
 
@@ -12,8 +12,12 @@ unsigned int get_start_time()
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-unsigned int get_current_time(t_data *data)
+int	ft_usleep(size_t milliseconds)
 {
-    unsigned int current_time = get_start_time();
-    return (current_time - data->start_time);
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
 }

@@ -8,7 +8,8 @@ typedef struct s_data	t_data;
 
 typedef struct s_philo
 {
-	unsigned int 			name;
+	unsigned int 	name;
+	unsigned int	eat_times;
 	t_data			*data;
 	pthread_t		id;
 	pthread_mutex_t	*r_fork;
@@ -19,8 +20,6 @@ typedef struct s_data
 {
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	unsigned int	eating;
-	unsigned int	ready;
 	unsigned int	philos_num;
 	unsigned int	meals_number;
 	unsigned int	time_die;
@@ -36,8 +35,8 @@ int	check_args(int argc, char **argv);
 unsigned int	ft_atoi(const char *nptr);
 
 /*   TIME_ZONE   */
-unsigned int	get_start_time();
-unsigned int 	get_current_time(t_data *data);
+unsigned int 	get_current_time();
+int	ft_usleep(size_t milliseconds);
 
 /*   INICIALIZATION   */
 int seat_the_philos(t_data *data, char **argv);
@@ -47,4 +46,6 @@ void	*routine(void *data);
 
 /*   ACTIONS   */
 void	eat(t_philo *philo);
+void	ft_sleep(t_philo *philo);
+void thinking();
 

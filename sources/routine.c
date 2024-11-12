@@ -8,7 +8,12 @@ void	*routine(void *data)
 	if(philo->name % 2 == 0)
 		usleep(1000);
 	//printf("eating %d\n", philo->data->eating);
-	eat(philo);
+	while (philo->eat_times < philo->data->meals_number)
+	{
+		eat(philo);
+		ft_sleep(philo);
+		thinking(philo);
+	}
 
 	//    FORMA DE ORDENAR AS THREADS
 	// while(philo->data->philos_num + 1 != philo->data->ready) // Temos de colocar o +1 por causa da ultima incrementacao

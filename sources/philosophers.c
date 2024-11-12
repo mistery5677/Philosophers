@@ -30,8 +30,6 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (seat_the_philos(&data, argv) == -1)
 		return (-1);
-	data.philos[0].name = 1;
-	printf("data.philo[0].name = %d\n", data.philos[0].name);
 	//print_info(&data);
 	
 	/*TESTAR O TEMPO DE EXECUCAO*/
