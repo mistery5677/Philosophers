@@ -50,5 +50,5 @@ void	*routine(void *data);
 /*   ACTIONS   */
 void	eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
-void 	thinking();
+void 	thinking(t_philo *philo);
 
