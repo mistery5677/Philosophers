@@ -8,13 +8,18 @@ void	*routine(void *data)
 	if(philo->name % 2 == 0)
 		usleep(1000);
 	//printf("eating %d\n", philo->data->eating);
-	while (philo->eat_times < philo->data->meals_number)
+	while (philo->eat_times < philo->data->meals_number && philo->data->died == 0)
 	{
 		eat(philo);
-		ft_sleep(philo);
-		thinking(philo);
+		if (philo->data->died == 0)
+		{ 
+			ft_sleep(philo);
+			if (philo->data->died == 0)
+				thinking(philo);
+		}
 	}
-
+	// if (philo->data->died != 0)
+	// 	printf("%d %d died\n", get_current_time() - philo->data->start_time, philo->data->died);
 	//    FORMA DE ORDENAR AS THREADS
 	// while(philo->data->philos_num + 1 != philo->data->ready) // Temos de colocar o +1 por causa da ultima incrementacao
 	// {

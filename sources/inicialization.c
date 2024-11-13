@@ -16,8 +16,9 @@ int seat_the_philos(t_data *data, char **argv)
 	if (argv[5])
 		data->meals_number = ft_atoi(argv[5]);
 	else
-		data->meals_number = 1;  //Tenho de mudar antes de entregar o projeto
+		data->meals_number = -1;  //Tenho de mudar antes de entregar o projeto
 	data->start_time = get_current_time();
+	data->died = 0;
 	//printf("start time %d | 	\n", data->start_time);
 	//printf("A simulacao comecou %d\n", data->start_time);
 
