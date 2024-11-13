@@ -27,7 +27,7 @@ int seat_the_philos(t_data *data, char **argv)
 	/*    MUTEX INICIALIZATION   */
 
 
-
+	pthread_mutex_init(&data->mut_dead, NULL);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));
 	while (i < data->philos_num)
 	{
@@ -74,5 +74,18 @@ int seat_the_philos(t_data *data, char **argv)
 		pthread_join(data->philos[i].id, NULL);
 		i++;
 	}
+	
+	//pthread_mutex_destroy(&data->mut_dead);
+	
+
+
+	/*   THREAD DESTRUCTION   */
+	i = 0;
+	while(i < data->philos_num)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&data->mut_dead);
 	return 0;
 }

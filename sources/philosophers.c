@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (seat_the_philos(&data, argv) == -1)
 		return (-1);
+	
 	//print_info(&data);
 	
 	/*TESTAR O TEMPO DE EXECUCAO*/
