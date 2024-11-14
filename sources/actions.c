@@ -23,7 +23,7 @@ void	eat(t_philo *philo)
 void	ft_sleep(t_philo *philo)
 {
 	printf("%d %d is sleeping\n", get_current_time() - philo->data->start_time, philo->name);
-	if (ft_usleep(philo, philo->data->time_sleep) == -1 && philo->data->died == 0)
+	if (ft_usleep(philo, philo->data->time_sleep) == -1 && philo->data->died != 0)
 		printf("%d %d died\n", get_current_time() - philo->data->start_time, philo->name);
 }
 
@@ -32,7 +32,7 @@ void thinking(t_philo *philo)
 	if (philo->data->time_eat > philo->data->time_sleep)
 	{
 		printf("%d %d is thinking\n", get_current_time() - philo->data->start_time, philo->name);
-		if (ft_usleep(philo, philo->data->time_sleep) == -1 && philo->data->died == 0)
+		if (ft_usleep(philo, philo->data->time_sleep) == -1 && philo->data->died != 0)
 			printf("%d %d died\n", get_current_time() - philo->data->start_time, philo->name);
 	}
 }

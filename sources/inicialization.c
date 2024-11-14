@@ -89,3 +89,4 @@ int seat_the_philos(t_data *data, char **argv)
 	pthread_mutex_destroy(&data->mut_dead);
 	return 0;
 }
+

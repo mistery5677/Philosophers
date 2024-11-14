@@ -23,9 +23,11 @@ int	ft_usleep(t_philo *philo, size_t milliseconds)
         //printf("philo name %d     current_time() - philo->last_meal %d\n", philo->name, get_current_time() - philo->last_meal);
         if (philo->last_meal != 0 && (get_current_time() - philo->last_meal) > philo->data->time_die)
         {
+            //printf("Alguém morreu\n");
+            philo->data->died = philo->name;
             //printf("Morreu %d\n", get_current_time() - philo->last_meal);
             //printf("Philo %d (get_current_time() - philo->last_meal) - philo->data->start_time %d philo->data->time_die %d\n", philo->name, (get_current_time() - philo->last_meal) - philo->data->start_time, philo->data->time_die);
-            //philo->data->died = philo->name;
+            philo->data->died = philo->name;
             return (-1);
         }
         usleep(500);
