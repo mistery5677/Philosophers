@@ -4,6 +4,15 @@ void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	pthread_mutex_lock(philo->l_fork);
+	pthread_mutex_lock(&philo->data->mut_dead); //To sinc the data, when the time to eat is lower than time to die
+	if (philo->data->died != 0)
+	{
+		pthread_mutex_unlock(&philo->data->mut_dead);
+		pthread_mutex_unlock(philo->l_fork);
+		pthread_mutex_unlock(philo->r_fork);
+		return;
+	}
+	pthread_mutex_unlock(&philo->data->mut_dead);
 	printf("%d %d has taken a fork\n", get_current_time() - philo->data->start_time, philo->name);
 	printf("%d %d has taken a fork\n", get_current_time() - philo->data->start_time, philo->name);
 	printf("%d %d is eating\n", get_current_time() - philo->data->start_time, philo->name);
@@ -33,7 +42,7 @@ void thinking(t_philo *philo)
 	if (philo->data->time_eat > philo->data->time_sleep)
 	{
 		printf("%d %d is thinking\n", get_current_time() - philo->data->start_time, philo->name);
-		ft_usleep(philo, philo->data->time_sleep);
+		ft_usleep(philo, philo->data->time_think);
 		// if (ft_usleep(philo, philo->data->time_sleep) == -1 && philo->data->died != 0)
 		// 	printf("%d %d died\n", get_current_time() - philo->data->start_time, philo->name);
 	}

@@ -8,7 +8,7 @@ void	*routine(void *data)
 	if(philo->name % 2 == 0)
 		usleep(1000);
 	//printf("eating %d\n", philo->data->eating);
-	printf("Philo name %d morreu o %d\n", philo->name, philo->data->died);
+	//printf("Philo name %d morreu o %d\n", philo->name, philo->data->died);
 	while (philo->eat_times < philo->data->meals_number && philo->data->died == 0)
 	{
 		if (philo->data->died != 0)

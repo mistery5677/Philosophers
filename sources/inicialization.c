@@ -1,10 +1,25 @@
 #include "../includes/philosophers.h"
 
-int seat_the_philos(t_data *data, char **argv)
+static void get_think(t_data *data)
 {
-	unsigned int i;
+	if (data->philos_num % 2 == 0)
+	{
+		if (data->time_eat > data->time_sleep)
+			data->time_think = data->time_eat - data->time_sleep;
+		else 
+			data->time_think = 0;
+	}
+	else 
+	{
+		if (data->time_eat * 2 > data->time_sleep)
+			data->time_think = (data->time_eat * 2) - data->time_sleep;
+		else 
+			data->time_think = 0;
+	}
+}
 
-	i = 0;
+static int initialize_status(t_data *data, char **argv)
+{
 	data->philos_num = ft_atoi(argv[1]);
 	printf("temos %d filosofos\n", data->philos_num);
 	data->philos = malloc((data->philos_num) * sizeof(t_philo));
@@ -13,6 +28,8 @@ int seat_the_philos(t_data *data, char **argv)
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
+	get_think(data);
+	//printf("Time to think %d\n", data->time_think);
 	if (data->time_eat > data->time_sleep)
 		data->time_think = data->time_eat - data->time_sleep;
 	else 
@@ -23,19 +40,23 @@ int seat_the_philos(t_data *data, char **argv)
 		data->meals_number = -1;  //Tenho de mudar antes de entregar o projeto
 	data->start_time = get_current_time();
 	data->died = 0;
-	//printf("start time %d | 	\n", data->start_time);
-	//printf("A simulacao comecou %d\n", data->start_time);
+	return (0);
+}
 
+static int initialize_mutex(t_data *data)
+{
+	unsigned int i;
 
-
-	/*    MUTEX INICIALIZATION   */
-
-
-	pthread_mutex_init(&data->mut_dead, NULL);
+	i = 0;
+	if (pthread_mutex_init(&data->mut_dead, NULL) != 0)
+		return (-1);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));
+	if (!data->forks)
+		return (-1);
 	while (i < data->philos_num)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
+		if (pthread_mutex_init(&data->forks[i], NULL) == -1)
+			return (-1);
 		i++;
 	}
 	i = 0;
@@ -44,23 +65,19 @@ int seat_the_philos(t_data *data, char **argv)
 	i++;
 	while (i < data->philos_num)
 	{
-		//printf("entrou\n");
 		data->philos[i].r_fork = &data->forks[i];
 		data->philos[i].l_fork = &data->forks[i - 1];
 		i++;
 	}
-	// printf("r_fork %p\nl_fork %p\n", data->philos[0].r_fork, data->philos[0].l_fork);
-	// printf("r_fork %p\nl_fork %p\n", data->philos[1].r_fork, data->philos[1].l_fork);
-	// printf("r_fork %p\nl_fork %p\n", data->philos[2].r_fork, data->philos[2].l_fork);
-	// printf("r_fork %p\nl_fork %p\n", data->philos[3].r_fork, data->philos[3].l_fork);
-	
-	
-	
-	/*   THREAD INICIALIZATION   */
+	return (0);
+}
 
-	
-	
+static int born_philos(t_data *data)
+{
+	unsigned int i;
+
 	i = 0;
+
 	while (i < data->philos_num)
 	{
 		//printf("Criou um thread\n");
@@ -75,15 +92,17 @@ int seat_the_philos(t_data *data, char **argv)
 	i = 0;
 	while (i < data->philos_num)
 	{
-		pthread_join(data->philos[i].id, NULL);
+		if (pthread_join(data->philos[i].id, NULL) != 0)
+			return (-1);
 		i++;
 	}
-	
-	//pthread_mutex_destroy(&data->mut_dead);
-	
+	return (0);
+}
 
+static void obliterate_table(t_data *data)
+{
+	unsigned int i;
 
-	/*   THREAD DESTRUCTION   */
 	i = 0;
 	while(i < data->philos_num)
 	{
@@ -91,6 +110,39 @@ int seat_the_philos(t_data *data, char **argv)
 		i++;
 	}
 	pthread_mutex_destroy(&data->mut_dead);
+}
+
+int seat_the_philos(t_data *data, char **argv)
+{
+	if (initialize_status(data, argv) == -1)
+		return (-1);
+	//printf("start time %d | 	\n", data->start_time);
+	//printf("A simulacao comecou %d\n", data->start_time);
+
+
+
+	/*    MUTEX INICIALIZATION   */
+
+	if (initialize_mutex(data) == -1)
+		return (-1);
+
+	// printf("r_fork %p\nl_fork %p\n", data->philos[0].r_fork, data->philos[0].l_fork);
+	// printf("r_fork %p\nl_fork %p\n", data->philos[1].r_fork, data->philos[1].l_fork);
+	// printf("r_fork %p\nl_fork %p\n", data->philos[2].r_fork, data->philos[2].l_fork);
+	// printf("r_fork %p\nl_fork %p\n", data->philos[3].r_fork, data->philos[3].l_fork);
+	
+	
+	
+	/*   THREAD INICIALIZATION   */
+
+	if (born_philos(data) == -1)
+		return (-1);
+	
+	//pthread_mutex_destroy(&data->mut_dead);
+	
+	/*   THREAD DESTRUCTION   */
+
+	obliterate_table(data);
 	return 0;
 }
 
