@@ -13,6 +13,10 @@ int seat_the_philos(t_data *data, char **argv)
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
+	if (data->time_eat > data->time_sleep)
+		data->time_think = data->time_eat - data->time_sleep;
+	else 
+		data->time_think = 0;
 	if (argv[5])
 		data->meals_number = ft_atoi(argv[5]);
 	else

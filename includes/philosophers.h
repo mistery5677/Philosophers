@@ -25,6 +25,7 @@ typedef struct s_data
 	unsigned int	died;
 	unsigned int	philos_num;
 	unsigned int	meals_number;
+	unsigned int	time_think;
 	unsigned int	time_die;
 	unsigned int	time_eat;
 	unsigned int	time_sleep;
