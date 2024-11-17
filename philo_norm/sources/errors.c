@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:37:22 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/17 16:37:28 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/17 18:52:39 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,21 @@ int	check_args(int argc, char **argv)
 	else if (ft_atoi(argv[1]) > 200)
 	{
 		write (2, "Max limit of philo\n", 19);
+		return (-1);
+	}
+	return (0);
+}
+
+int	check_status(t_data *data)
+{
+	if (data->philos_num == 0)
+	{
+		printf("No philos to seat\n");
+		return (-1);
+	}
+	if (data->time_die == 0 || data->time_eat == 0  || data->time_sleep == 0)
+	{
+		printf("0 seconds is impossible\n");
 		return (-1);
 	}
 	return (0);

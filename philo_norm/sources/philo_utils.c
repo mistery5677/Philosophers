@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/17 17:00:44 by mistery576        #+#    #+#             */
+/*   Updated: 2024/11/17 17:01:03 by mistery576       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philosophers.h"
 
 unsigned int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	neg;
 	unsigned int	final_nr;
+	int				i;
+	int				neg;
 
 	neg = 1;
 	final_nr = 0;

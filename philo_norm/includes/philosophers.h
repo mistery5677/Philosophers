@@ -22,7 +22,6 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t mut_dead;
-	pthread_mutex_t sync;
 	unsigned int	died;
 	unsigned int	philos_num;
 	unsigned int	philos_finished;
@@ -36,6 +35,7 @@ typedef struct s_data
 
 /*   CHECK ERROR   */
 int	check_args(int argc, char **argv);
+int	check_status(t_data *data);
 
 /*   UTILS   */
 unsigned int	ft_atoi(const char *nptr);
