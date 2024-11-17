@@ -29,15 +29,11 @@ static int initialize_status(t_data *data, char **argv)
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
 	get_think(data);
-	//printf("Time to think %d\n", data->time_think);
-	if (data->time_eat > data->time_sleep)
-		data->time_think = data->time_eat - data->time_sleep;
-	else 
-		data->time_think = 0;
 	if (argv[5])
 		data->meals_number = ft_atoi(argv[5]);
 	else
 		data->meals_number = -1;  //Tenho de mudar antes de entregar o projeto
+	data->philos_finished = 0;
 	data->start_time = get_current_time();
 	data->died = 0;
 	return (0);
@@ -48,6 +44,7 @@ static int initialize_mutex(t_data *data)
 	unsigned int i;
 
 	i = 0;
+	pthread_mutex_init(&data->sync, NULL);
 	if (pthread_mutex_init(&data->mut_dead, NULL) != 0)
 		return (-1);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));
@@ -110,6 +107,7 @@ static void obliterate_table(t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(&data->mut_dead);
+	pthread_mutex_destroy(&data->sync);
 }
 
 int seat_the_philos(t_data *data, char **argv)

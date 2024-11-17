@@ -9,28 +9,45 @@ void	*routine(void *data)
 		usleep(1000);
 	//printf("eating %d\n", philo->data->eating);
 	//printf("Philo name %d morreu o %d\n", philo->name, philo->data->died);
-	while (philo->eat_times < philo->data->meals_number && philo->data->died == 0)
+	//while (philo->eat_times < philo->data->meals_number)
+	while(1)
 	{
-		if (philo->data->died != 0)
+		//pthread_mutex_lock(&philo->data->sync);
+		if (philo->data->died != 0 || philo->data->philos_finished == philo->data->philos_num || philo->eat_times == philo->data->meals_number)
 		{
 			//printf("breaked\n");
+			//pthread_mutex_unlock(&philo->data->sync);
 			break;
 		}
+		//pthread_mutex_unlock(&philo->data->sync);
+
 		eat(philo);
-		if (philo->data->died != 0)
+
+		//pthread_mutex_lock(&philo->data->sync);
+		if (philo->data->died != 0 || philo->data->philos_finished == philo->data->philos_num)
 		{
 			//printf("breaked\n");
+			//pthread_mutex_unlock(&philo->data->sync);
 			break;
 		}
+		//pthread_mutex_unlock(&philo->data->sync);
+
 		ft_sleep(philo);
-		if (philo->data->died != 0)
+
+		//pthread_mutex_lock(&philo->data->sync);
+		if (philo->data->died != 0 || philo->data->philos_finished == philo->data->philos_num)
 		{
 			//printf("breaked\n");
+			//pthread_mutex_unlock(&philo->data->sync);
 			break;
 		}
-		if (philo->data->time_think > 0)
+		//pthread_mutex_unlock(&philo->data->sync);
+
+		// printf("Time think %d  finished %d philos_num %d", philo->data->time_think, philo->data->philos_finished, philo->data->philos_num);
+		if (philo->data->time_think > 0 || philo->data->philos_finished != philo->data->philos_num)
 			thinking(philo);
 	}
+	//printf("Philo satisfeitos %d\n", philo->data->philos_finished);
 	if (philo->name == philo->data->died)
 		printf("%d %d died\n", get_current_time() - philo->data->start_time, philo->data->died);
 	// if (philo->data->died != 0)
