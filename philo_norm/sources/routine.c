@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/17 19:48:09 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/18 00:46:00 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*routine(void *data)
 		usleep(1000);
 	while (1)
 	{
-		if (routine_validation(philo) == 1)
+		if (routine_validation(philo) >= 1)
 			break ;
 		eat(philo);
 		if (routine_validation(philo) == 2)

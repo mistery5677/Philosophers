@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/17 19:21:39 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/18 00:32:55 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static int	born_philos(t_data *data)
 		data->philos[i].name = i + 1;
 		data->philos[i].data = data;
 		data->philos[i].eat_times = 0;
+		data->philos[i].last_meal = 0;
 		if (pthread_create(&data->philos[i].id, NULL, routine,
 				&data->philos[i]) == -1)
 			return (-1);

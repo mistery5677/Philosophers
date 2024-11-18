@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:09:50 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/17 17:16:32 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/18 00:43:24 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_usleep(t_philo *philo, size_t milliseconds)
 	while ((get_current_time() - start) < milliseconds)
 	{
 		pthread_mutex_lock(&philo->data->mut_dead);
-		if (philo->last_meal != 0 && philo->data->died == 0
+		if (philo->data->died == 0
 			&& (get_current_time() - philo->last_meal) > philo->data->time_die)
 		{
 			philo->data->died = philo->name;

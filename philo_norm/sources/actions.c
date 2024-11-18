@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:28:14 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/17 16:37:11 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/18 00:46:03 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	eat(t_philo *philo)
 	printf("%d %d has taken a fork\n", current_time_ml(philo), philo->name);
 	printf("%d %d has taken a fork\n", current_time_ml(philo), philo->name);
 	printf("%d %d is eating\n", current_time_ml(philo), philo->name);
-	philo->last_meal = get_current_time();
+	if (philo->last_meal == 0)
+		philo->last_meal = get_current_time();
 	if (ft_usleep(philo, philo->data->time_eat) == -1 && philo->data->died == 0)
 		return ;
 	philo->eat_times++;
