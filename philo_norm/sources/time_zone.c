@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time_zone.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:09:50 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/19 00:24:49 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/19 17:14:36 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	ft_usleep(t_philo *philo, size_t milliseconds)
 			&& (get_current_time() - philo->last_meal) > philo->data->time_die)
 		{
 			philo->data->died = philo->name;
-			pthread_mutex_unlock(&philo->data->mut_dead);
 			return (-1);
 		}
 		//pthread_mutex_unlock(&philo->data->mut_dead);
