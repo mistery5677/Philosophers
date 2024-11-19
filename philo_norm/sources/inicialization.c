@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/19 17:14:24 by miafonso         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:22:19 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	initialize_mutex(t_data *data)
 	unsigned int	i;
 
 	i = 0;
+	pthread_mutex_init(&data->write, NULL);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (-1);
