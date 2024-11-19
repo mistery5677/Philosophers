@@ -22,6 +22,7 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t mut_dead;
+	pthread_mutex_t sync;
 	unsigned int	died;
 	unsigned int	philos_num;
 	unsigned int	philos_finished;

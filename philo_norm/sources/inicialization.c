@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/18 00:32:55 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/19 00:29:03 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	initialize_mutex(t_data *data)
 	unsigned int	i;
 
 	i = 0;
+	pthread_mutex_init(&data->sync, NULL);
 	if (pthread_mutex_init(&data->mut_dead, NULL) != 0)
 		return (-1);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));

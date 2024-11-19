@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/18 00:46:00 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/19 01:20:10 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 static int	routine_validation(t_philo *philo)
 {
 	//printf("Pilo %d vai verificar %d, finished %d philos nums %d,")
+	// pthread_mutex_lock(&philo->data->sync);
 	if (philo->data->died != 0 || philo->data->philos_finished == philo->data->philos_num)
+	{
+		// pthread_mutex_unlock(&philo->data->sync);
 		return (2);
+	}
 	if (philo->data->died != 0
 		|| philo->data->philos_finished == philo->data->philos_num
 		|| philo->eat_times == philo->data->meals_number)
+	{
+		// pthread_mutex_unlock(&philo->data->sync);
 		return (1);
+	}
+	// pthread_mutex_unlock(&philo->data->sync);
 	return (0);
 }
 
