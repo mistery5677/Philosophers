@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inicialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/19 17:22:19 by miafonso         ###   ########.fr       */
+/*   Updated: 2024/11/19 23:35:12 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static int	initialize_mutex(t_data *data)
 
 	i = 0;
 	pthread_mutex_init(&data->write, NULL);
+	pthread_mutex_init(&data->sync, NULL);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (-1);

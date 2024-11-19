@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:28:14 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/19 17:24:29 by miafonso         ###   ########.fr       */
+/*   Updated: 2024/11/19 23:40:24 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->write);
 	if (philo->last_meal == 0)
 		philo->last_meal = get_current_time();
+	pthread_mutex_lock(&philo->data->sync);
 	philo->eat_times++;
+	pthread_mutex_unlock(&philo->data->sync);
 	if (philo->eat_times == philo->data->meals_number)
 		philo->data->philos_finished++;
 	if (ft_usleep(philo, philo->data->time_eat) == -1 && philo->data->died == 0)
