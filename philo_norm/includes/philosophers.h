@@ -20,9 +20,11 @@ typedef struct s_philo
 typedef struct s_data
 {
 	t_philo			*philos;
+	pthread_t		supervisor;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t write;
 	pthread_mutex_t sync;
+	unsigned int	sim;
 	unsigned int	died;
 	unsigned int	philos_num;
 	unsigned int	philos_finished;
@@ -57,3 +59,5 @@ void	eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
 void 	thinking(t_philo *philo);
 
+/*   CONDITIONS   */
+void *conditions(void *table);

@@ -74,7 +74,7 @@ static int born_philos(t_data *data)
 	unsigned int i;
 
 	i = 0;
-
+	pthread_create(*data->supervisor, NULL, conditions, &data);
 	while (i < data->philos_num)
 	{
 		//printf("Criou um thread\n");

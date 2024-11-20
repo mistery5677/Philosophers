@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/19 23:35:12 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/20 01:25:09 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ static int	born_philos(t_data *data)
 			return (-1);
 		i++;
 	}
+	pthread_create(&data->supervisor, NULL, conditions, data);
 	i = 0;
+	pthread_join(data->supervisor, NULL);
 	while (i < data->philos_num)
 	{
 		if (pthread_join(data->philos[i].id, NULL) != 0)

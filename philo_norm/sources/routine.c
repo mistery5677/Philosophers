@@ -6,32 +6,32 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/19 23:38:20 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/20 01:14:28 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static int	routine_validation(t_philo *philo)
-{
-	//printf("Pilo %d vai verificar %d, finished %d philos nums %d,")
-	// pthread_mutex_lock(&philo->data->sync);
-	if (philo->data->died != 0 || philo->data->philos_finished == philo->data->philos_num)
-	{
-		//pthread_mutex_unlock(&philo->data->sync);
-		return (2);
-	}
-	if (philo->data->died != 0
-		|| philo->data->philos_finished == philo->data->philos_num
-		|| philo->eat_times == philo->data->meals_number)
-	{
-		//pthread_mutex_unlock(&philo->data->sync);
-		return (1);
-	}
-	//pthread_mutex_unlock(&philo->data->sync);
-	// pthread_mutex_unlock(&philo->data->sync);
-	return (0);
-}
+// static int	routine_validation(t_philo *philo)
+// {
+// 	//printf("Pilo %d vai verificar %d, finished %d philos nums %d,")
+// 	// pthread_mutex_lock(&philo->data->sync);
+// 	if (philo->data->died != 0 || philo->data->philos_finished == philo->data->philos_num)
+// 	{
+// 		//pthread_mutex_unlock(&philo->data->sync);
+// 		return (2);
+// 	}
+// 	if (philo->data->died != 0
+// 		|| philo->data->philos_finished == philo->data->philos_num
+// 		|| philo->eat_times == philo->data->meals_number)
+// 	{
+// 		//pthread_mutex_unlock(&philo->data->sync);
+// 		return (1);
+// 	}
+// 	//pthread_mutex_unlock(&philo->data->sync);
+// 	// pthread_mutex_unlock(&philo->data->sync);
+// 	return (0);
+// }
 
 void	*routine(void *data)
 {
@@ -42,13 +42,13 @@ void	*routine(void *data)
 		usleep(1000);
 	while (1)
 	{
-		if (routine_validation(philo) >= 1)
+		if (philo->data->sim == 1)
 			break ;
 		eat(philo);
-		if (routine_validation(philo) == 2)
+		if (philo->data->sim == 1)
 			break ;
 		ft_sleep(philo);
-		if (routine_validation(philo) == 2)
+		if (philo->data->sim == 1)
 			break ;
 		if (philo->data->time_think > 0)
 			thinking(philo);
