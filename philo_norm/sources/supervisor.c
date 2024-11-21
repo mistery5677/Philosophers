@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 23:42:22 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/20 19:36:04 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/21 13:34:34 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,29 @@ static int	check_full(t_data *data)
 
 	i = 0;
 	while(i < data->philos_num)
-	{
-		if (data->philos[i].eat_times == data->meals_number)
-			data->philos_finished++;
+	{	
+		//printf("Philo %d  philos->finished %d\n", data->philos[i].name, data->philos_finished);
 		if (data->philos_finished == data->philos_num)
 		{
-			//printf("brekou5\n");
+			pthread_mutex_lock(&data->write);
+			printf("Vou mudar o valor da sim pq estao todos cheios\n");
+			pthread_mutex_unlock(&data->write);
 			data->sim = 1;
 			return 1;
 		}
 		if (data->died != 0)
 		{
+			pthread_mutex_lock(&data->write);
+			printf("Alguem morreu\n");
+			pthread_mutex_unlock(&data->write);
 			//printf("brekou6\n");
 			data->sim = 1;
 			return 1;
 		}
+		pthread_mutex_lock(&data->sync);
 		i++;
+		pthread_mutex_unlock(&data->sync);
+		//printf("encrementou o i\n");
 	}
 	return 0;
 }
@@ -57,7 +64,7 @@ void *conditions(void *table)
 			//printf("brekou3\n");
 			break ;
 		}
-		//usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }
