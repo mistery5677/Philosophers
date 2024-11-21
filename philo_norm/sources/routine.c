@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/20 01:14:28 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/21 00:49:38 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,23 @@ void	*routine(void *data)
 	while (1)
 	{
 		if (philo->data->sim == 1)
+		{
+			//printf("brekou\n");
 			break ;
+		}
 		eat(philo);
 		if (philo->data->sim == 1)
+		{
+			//printf("brekou\n");
 			break ;
+		}
 		ft_sleep(philo);
 		if (philo->data->sim == 1)
+		{
+			//printf("brekou\n");
 			break ;
+		}
+		//printf("thinking time%d\n", philo->data->time_think);
 		if (philo->data->time_think > 0)
 			thinking(philo);
 	}

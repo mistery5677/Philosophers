@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:27:49 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/19 17:14:11 by miafonso         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:40:56 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	obliterate_table(t_data *data)
 			pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&data->write);
+	pthread_mutex_destroy(&data->sync);
 	free(data->forks);
 	free(data->philos);
 }

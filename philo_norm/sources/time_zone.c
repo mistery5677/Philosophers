@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:09:50 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/20 01:19:43 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/20 19:49:05 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ int	ft_usleep(t_philo *philo, size_t milliseconds)
 	while ((get_current_time() - start) < milliseconds)
 	{
 		//pthread_mutex_lock(&philo->data->mut_dead);
+		// printf("entrou\n");
 		if (philo->data->died == 0
 			&& (get_current_time() - philo->last_meal) > philo->data->time_die)
 		{
+			// printf("entrou %d\n", philo->name);
 			philo->data->died = philo->name;
 			return (-1);
 		}
+		else if (philo->data->died != 0)
+			return (-1);
 		//pthread_mutex_unlock(&philo->data->mut_dead);
 		usleep(500);
 	}

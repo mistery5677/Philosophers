@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/20 01:25:09 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/21 00:42:18 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	initialize_status(t_data *data, char **argv)
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
 	get_think(data);
+	printf("time think %d\n", data->time_think);
 	if (argv[5])
 		data->meals_number = ft_atoi(argv[5]);
 	else
@@ -47,6 +48,7 @@ static int	initialize_status(t_data *data, char **argv)
 	data->philos_finished = 0;
 	data->start_time = get_current_time();
 	data->died = 0;
+	data->sim = 0;
 	return (0);
 }
 
