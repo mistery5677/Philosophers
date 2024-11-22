@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/21 00:49:38 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/22 00:17:02 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*routine(void *data)
 
 	philo = (t_philo *)data;
 	if (philo->name % 2 == 0)
-		usleep(1000);
+		ft_usleep(philo, philo->data->time_eat); // Vou dar um dellay com o tempo de comer, para que o primeiro grupo de threads coma, para depois vir o proximo grupo.
 	while (1)
 	{
 		if (philo->data->sim == 1)
