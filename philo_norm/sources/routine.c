@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/22 00:17:02 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/22 11:17:17 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*routine(void *data)
 			break ;
 		}
 		eat(philo);
-		if (philo->data->sim == 1)
+		if (philo->data->died != 0)
 		{
 			//printf("brekou\n");
 			break ;
