@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:27:49 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/21 00:40:56 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/24 21:23:04 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	obliterate_table(t_data *data)
 	i = 0;
 	while (i < data->philos_num)
 	{
-		//if (&data->forks[i] != NULL)
+		if (&data->forks[i] != NULL)
 			pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}

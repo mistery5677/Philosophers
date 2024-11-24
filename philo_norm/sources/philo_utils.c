@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:00:44 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/17 17:01:03 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/24 22:52:34 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,12 @@ unsigned int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (final_nr * neg);
+}
+
+void	release_fork(t_philo *philo, int flag)
+{
+	pthread_mutex_unlock(philo->r_fork);
+	pthread_mutex_unlock(philo->l_fork);
+	if (flag == 1)
+		pthread_mutex_unlock(&philo->data->sync);
 }
