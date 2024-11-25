@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:28:14 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/24 22:55:39 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/11/22 11:34:26 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	eat(t_philo *philo)
 {
+	//printf("Vou tentar apanha os garfos %d\n", philo->name);
 	pthread_mutex_lock(philo->r_fork);
 	pthread_mutex_lock(philo->l_fork);
 	pthread_mutex_lock(&philo->data->sync);
 	if (philo->data->died != 0 || philo->eat_times == philo->data->meals_number)
 	{
-		release_fork(philo, 1);
+		pthread_mutex_unlock(philo->r_fork);
+		pthread_mutex_unlock(philo->l_fork);
+		pthread_mutex_unlock(&philo->data->sync);
 		return ;
 	}
 	pthread_mutex_unlock(&philo->data->sync);
@@ -42,6 +45,7 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->sync);
 	if (ft_usleep(philo, philo->data->time_eat) == -1)
 	{
+		//printf("Vai largar os garfos erro%d\n", philo->name);
 		pthread_mutex_unlock(philo->r_fork);
 		pthread_mutex_unlock(philo->l_fork);
 		return ;
@@ -58,11 +62,16 @@ void	eat(t_philo *philo)
 	else if (philo->last_meal != 0 && (get_current_time() - philo->last_meal) > philo->data->time_die)
 	{
 		philo->data->died = philo->name;
-		release_fork(philo, 1);
+		pthread_mutex_unlock(&philo->data->sync);
+		pthread_mutex_unlock(philo->r_fork);
+		pthread_mutex_unlock(philo->l_fork);
 		return ;
 	}
+	pthread_mutex_unlock(&philo->data->sync);
+	//printf("Vai largar os garfos %d\n", philo->name);
 	philo->last_meal = get_current_time();
-	release_fork(philo, 1);
+	pthread_mutex_unlock(philo->r_fork);
+	pthread_mutex_unlock(philo->l_fork);
 }
 
 void	ft_sleep(t_philo *philo)

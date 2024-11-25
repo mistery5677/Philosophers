@@ -42,7 +42,6 @@ int	check_status(t_data *data);
 
 /*   UTILS   */
 unsigned int	ft_atoi(const char *nptr);
-void			release_fork(t_philo *philo, int flag);
 
 /*   TIME_ZONE   */
 unsigned int 	get_current_time();
