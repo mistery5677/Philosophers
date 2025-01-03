@@ -24,6 +24,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t write;
 	pthread_mutex_t sync;
+	pthread_mutex_t dead_lock;
 	unsigned int	sim;
 	unsigned int	died;
 	unsigned int	philos_num;
@@ -61,3 +62,4 @@ void 	thinking(t_philo *philo);
 
 /*   CONDITIONS   */
 void *conditions(void *table);
+int	check_sim(t_philo *philo);

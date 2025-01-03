@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inicialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/22 11:50:52 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/03 08:39:19 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	initialize_status(t_data *data, char **argv)
 		return (-1);
 	data->philos_finished = 0;
 	data->start_time = get_current_time();
-	data->died = 0;
 	data->sim = 0;
 	return (0);
 }
@@ -59,6 +58,7 @@ static int	initialize_mutex(t_data *data)
 	i = 0;
 	pthread_mutex_init(&data->write, NULL);
 	pthread_mutex_init(&data->sync, NULL);
+	pthread_mutex_init(&data->dead_lock, NULL);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (-1);
@@ -95,9 +95,9 @@ static int	born_philos(t_data *data)
 			return (-1);
 		i++;
 	}
-	pthread_create(&data->supervisor, NULL, conditions, data);
+	//pthread_create(&data->supervisor, NULL, conditions, data);
 	i = 0;
-	pthread_join(data->supervisor, NULL);
+	//pthread_join(data->supervisor, NULL);
 	while (i < data->philos_num)
 	{
 		if (pthread_join(data->philos[i].id, NULL) != 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/22 11:17:17 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/03 08:49:53 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@
 // 	return (0);
 // }
 
+int	check_sim(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->dead_lock);
+	if (philo->data->died != 0 || philo->data->philos_finished == philo->data->philos_num)
+	{
+		pthread_mutex_unlock(&philo->data->dead_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->dead_lock);
+	return (0);
+}
+
 void	*routine(void *data)
 {
 	t_philo	*philo;
@@ -42,28 +54,21 @@ void	*routine(void *data)
 		ft_usleep(philo, philo->data->time_eat); // Vou dar um dellay com o tempo de comer, para que o primeiro grupo de threads coma, para depois vir o proximo grupo.
 	while (1)
 	{
-		if (philo->data->sim == 1)
-		{
-			//printf("brekou\n");
+		if (check_sim(philo) == 1)
 			break ;
-		}
 		eat(philo);
-		if (philo->data->died != 0)
-		{
-			//printf("brekou\n");
+		if (check_sim(philo) == 1)
 			break ;
-		}
 		ft_sleep(philo);
-		if (philo->data->sim == 1)
-		{
-			//printf("brekou\n");
+		if (check_sim(philo) == 1)
 			break ;
-		}
-		//printf("thinking time%d\n", philo->data->time_think);
-		if (philo->data->time_think > 0)
-			thinking(philo);
+		thinking(philo);
 	}
-	if (philo->name == philo->data->died)
-		printf("%d %d died\n", current_time_ml(philo), philo->data->died);
+	if (philo->data->died == philo->name)
+	{
+		pthread_mutex_lock(&philo->data->write);
+		printf("%d %d died\n", current_time_ml(philo), philo->name);
+		pthread_mutex_unlock(&philo->data->write);
+	}
 	return (NULL);
 }
