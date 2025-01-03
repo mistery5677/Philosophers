@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:09:50 by mistery576        #+#    #+#             */
-/*   Updated: 2024/12/31 16:11:19 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/03 13:45:24 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,26 @@ unsigned int	current_time_ml(t_philo *philo)
 int	ft_usleep(t_philo *philo, size_t milliseconds)
 {
 	size_t	start;
-
+	int died;
 	(void)philo;
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
 	{
-		pthread_mutex_lock(&philo->data->dead_lock);
-		if (philo->last_meal != 0 && philo->data->died == 0 && get_current_time() - philo->last_meal >= philo->data->time_die)
+		pthread_mutex_lock(&philo->data->sync);
+		died = philo->data->died;
+		pthread_mutex_unlock(&philo->data->sync);
+		if (philo->last_meal != 0 && died == 0 && get_current_time() - philo->last_meal >= philo->data->time_die)
 		{
 			pthread_mutex_lock(&philo->data->sync);
 			philo->data->died = philo->name;
 			philo->data->sim = 1;
 			pthread_mutex_unlock(&philo->data->sync);
-			pthread_mutex_unlock(&philo->data->dead_lock);
 			return 1;
 		}
 		if (philo->data->died != 0)
 		{
-			pthread_mutex_unlock(&philo->data->dead_lock);
 			return 1;
 		}
-		pthread_mutex_unlock(&philo->data->dead_lock);
 		usleep(500);
 	}
 	return (0);
