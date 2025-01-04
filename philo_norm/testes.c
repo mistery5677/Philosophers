@@ -305,3 +305,25 @@
 //   return 0;
 // }
 // // }
+
+#include <sys/wait.h>
+
+int main()
+{
+    int child;
+    char *argv[] = {"/bin/ls", "-la", 0};
+
+    child = fork();
+    printf("Child: %d\n", child);
+    if (child == 0)
+    {
+        execve(argv[0], argv, NULL);
+        exit(0);
+    }
+    else
+    {
+        printf("I am the parent\n");
+    }
+    waitpid(child, NULL, 0);
+
+}

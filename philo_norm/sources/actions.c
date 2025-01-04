@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:28:14 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/03 13:43:29 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/04 23:05:03 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	eat(t_philo *philo)
 {
 	pthread_mutex_t *first_fork;
 	pthread_mutex_t *second_fork;
-
+		
+			
 	// Garante a ordem consistente
 	if (philo->r_fork < philo->l_fork)
 	{
@@ -41,6 +42,8 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(first_fork);
 	pthread_mutex_lock(second_fork);
 
+	if (philo->last_meal == 0)
+		philo->last_meal = get_current_time();
 	// Seção crítica
 	pthread_mutex_lock(&philo->data->write);
 	if (check_sim(philo) == 1)
@@ -57,6 +60,7 @@ void	eat(t_philo *philo)
 
 	// Atualiza o tempo da última refeição
 	//pthread_mutex_lock(&philo->data->sync);
+	ft_usleep(philo, philo->data->time_eat);
 	philo->last_meal = get_current_time();
 	philo->eat_times++;
 	//pthread_mutex_unlock(&philo->data->sync);
@@ -67,7 +71,6 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->sync);
 
 	// Simula o tempo de comer
-	ft_usleep(philo, philo->data->time_eat);
 
 	// Libera os garfos
 	pthread_mutex_unlock(second_fork);

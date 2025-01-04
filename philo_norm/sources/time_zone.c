@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:09:50 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/03 13:45:24 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/04 12:50:22 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_usleep(t_philo *philo, size_t milliseconds)
 {
 	size_t	start;
 	int died;
+	
 	(void)philo;
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
@@ -48,7 +49,7 @@ int	ft_usleep(t_philo *philo, size_t milliseconds)
 			pthread_mutex_unlock(&philo->data->sync);
 			return 1;
 		}
-		if (philo->data->died != 0)
+		if (died != 0)
 		{
 			return 1;
 		}
