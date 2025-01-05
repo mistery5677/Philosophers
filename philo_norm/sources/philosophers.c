@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:27:49 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/05 01:11:20 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/05 01:24:47 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static void	obliterate_table(t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(&data->write);
-	pthread_mutex_destroy(&data->sync);
-	pthread_mutex_destroy(&data->dead_lock);
 	free(data->forks);
 	free(data->philos);
 }

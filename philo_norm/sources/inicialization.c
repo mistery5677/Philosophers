@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/05 01:03:49 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/05 01:39:45 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	initialize_status(t_data *data, char **argv)
 		return (-1);
 	data->philos_finished = 0;
 	data->start_time = get_current_time();
-	data->sim = 0;
 	return (0);
 }
 
@@ -58,7 +57,6 @@ static int	initialize_mutex(t_data *data)
 	i = 0;
 	pthread_mutex_init(&data->write, NULL);
 	pthread_mutex_init(&data->sync, NULL);
-	pthread_mutex_init(&data->dead_lock, NULL);
 	data->forks = malloc(data->philos_num * sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (-1);

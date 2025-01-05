@@ -19,7 +19,7 @@ SRC_DIR			=	sources/
 
 OBJ_DIR			=	objs/
 
-SRC				=	$(addprefix $(SRC_DIR), philosophers.c errors.c inicialization.c philo_utils.c time_zone.c actions.c routine.c supervisor.c) \
+SRC				=	$(addprefix $(SRC_DIR), philosophers.c errors.c inicialization.c philo_utils.c time_zone.c actions.c routine.c) \
 
 OBJ_DIRS		=	$(OBJ_DIR) $(addprefix $(OBJ_DIR), $(SRC_DIR)) \
 
