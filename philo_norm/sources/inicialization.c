@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/03 14:08:59 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/05 01:03:49 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	initialize_status(t_data *data, char **argv)
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
+	data->died = 0;
 	get_think(data);
 	if (argv[5])
 		data->meals_number = ft_atoi(argv[5]);
@@ -94,9 +95,7 @@ static int	born_philos(t_data *data)
 			return (-1);
 		i++;
 	}
-	//pthread_create(&data->supervisor, NULL, conditions, data);
 	i = 0;
-	//pthread_join(data->supervisor, NULL);
 	while (i < data->philos_num)
 	{
 		if (pthread_join(data->philos[i].id, NULL) != 0)

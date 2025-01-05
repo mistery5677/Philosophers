@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:37:22 by mistery576        #+#    #+#             */
-/*   Updated: 2024/11/17 18:52:39 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/05 00:18:06 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_status(t_data *data)
 		printf("No philos to seat\n");
 		return (-1);
 	}
-	if (data->time_die == 0 || data->time_eat == 0  || data->time_sleep == 0)
+	if (data->time_die == 0 || data->time_eat == 0 || data->time_sleep == 0)
 	{
 		printf("0 seconds is impossible\n");
 		return (-1);
