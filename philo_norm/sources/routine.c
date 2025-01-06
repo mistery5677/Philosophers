@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/05 01:40:04 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/05 11:45:57 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,37 @@ static int	do_routine(t_philo *philo)
 	return (0);
 }
 
+static void eat_alone(t_philo *philo)
+{
+	pthread_mutex_lock(philo->r_fork);
+	printf("%d %d has taken a fork\n", current_time_ml(philo), philo->name);
+	printf("%d %d died\n", philo->data->time_eat, philo->name);
+	pthread_mutex_unlock(philo->r_fork);
+}
+
 void	*routine(void *data)
 {
 	unsigned int	died;
 	t_philo			*philo;
 
 	philo = (t_philo *)data;
-	if (philo->name % 2 == 0)
-		ft_usleep(philo, philo->data->time_eat);
-	while (do_routine(philo) == 0)
-		;
-	pthread_mutex_lock(&philo->data->sync);
-	died = philo->data->died;
-	pthread_mutex_unlock(&philo->data->sync);
-	if (died == philo->name)
+	if (philo->data->philos_num == 1)
+		eat_alone(philo);
+	else
 	{
-		pthread_mutex_lock(&philo->data->write);
-		printf("%d %d died\n", current_time_ml(philo), philo->name);
-		pthread_mutex_unlock(&philo->data->write);
+		if (philo->name % 2 == 0)
+			ft_usleep(philo, philo->data->time_eat);
+		while (do_routine(philo) == 0)
+			;
+		pthread_mutex_lock(&philo->data->sync);
+		died = philo->data->died;
+		pthread_mutex_unlock(&philo->data->sync);
+		if (died == philo->name)
+		{
+			pthread_mutex_lock(&philo->data->write);
+			printf("%d %d died\n", current_time_ml(philo), philo->name);
+			pthread_mutex_unlock(&philo->data->write);
+		}
 	}
 	return (NULL);
 }
