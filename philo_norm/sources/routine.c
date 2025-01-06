@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/05 11:45:57 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/06 23:20:53 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	do_routine(t_philo *philo)
 	return (0);
 }
 
-static void eat_alone(t_philo *philo)
+static void	eat_alone(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	printf("%d %d has taken a fork\n", current_time_ml(philo), philo->name);
