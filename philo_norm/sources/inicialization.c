@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/06 23:16:50 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/07 00:10:08 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ static int	initialize_status(t_data *data, char **argv)
 		data->meals_number = ft_atoi(argv[5]);
 	else
 		data->meals_number = -1;
-	if (data->time_die > INT_MAX
-		|| data->time_eat > INT_MAX
-		|| data->time_sleep > INT_MAX
-		|| data->meals_number > INT_MAX)
-	{
-		printf("Error: Too big number\n");
-		exit(0);
-	}
 	data->philos = malloc((data->philos_num) * sizeof(t_philo));
 	if (!data->philos)
 		return (-1);
