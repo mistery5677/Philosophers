@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:27:49 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/07 12:57:37 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:31:34 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (seat_the_philos(&data, argv) == -1)
 	{
-		printf("Something went wrong\n");
+		if (data.meals_number == 0)
+			printf("Philos don't want to eat\n");
+		else
+			printf("Something went wrong\n");
 		return (-1);
 	}
 	obliterate_table(&data);

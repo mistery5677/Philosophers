@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:39:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/07 00:10:08 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/09 14:30:09 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int	initialize_status(t_data *data, char **argv)
 		data->meals_number = ft_atoi(argv[5]);
 	else
 		data->meals_number = -1;
+	if (data->meals_number == 0)
+		return (-1);
 	data->philos = malloc((data->philos_num) * sizeof(t_philo));
 	if (!data->philos)
 		return (-1);
