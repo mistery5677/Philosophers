@@ -1,6 +1,3 @@
-.SILENT:
-MAKEFLAGS += --no-print-directory
-
 GREEN   		= \033[0;32m
 TEAL    		= \033[1;36m
 RESET 			= \033[0m 
@@ -26,7 +23,6 @@ OBJ_DIRS		=	$(OBJ_DIR) $(addprefix $(OBJ_DIR), $(SRC_DIR)) \
 OBJ				=	$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 $(NAME):			$(OBJ) | $(SRC) 
-# Pc da escola					$(CC) $(CFLAGS) -lreadline $^ -o $@ -I $(INC_DIR) -L$(LFT_PATH) -lft
 					$(CC) $(CFLAGS) $^ -o $@ -I $(INC_DIR)  -pthread
 					printf '$(GREEN)$(NAME) compiled successfully!\n $(RESET)'
 

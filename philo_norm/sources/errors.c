@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:37:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/07 13:02:03 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:05:40 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	check_limits(char **argv)
 	int	i;
 
 	i = 2;
-	if (ft_strlen(argv[1]) > 3 ||
-		(ft_strlen(argv[1]) == 3 && ft_strncmp(argv[1], "200", 3) > 0))
+	if (ft_strlen(argv[1]) > 3
+		|| (ft_strlen(argv[1]) == 3 && ft_strncmp(argv[1], "200", 3) > 0))
 	{
 		write (2, "Max limit of philo\n", 19);
 		exit(1);
@@ -46,8 +46,8 @@ static void	check_limits(char **argv)
 	while (argv[i])
 	{
 		if (ft_strlen(argv[i]) > 10
-			|| (ft_strlen(argv[i]) == 10 
-				&& ft_strncmp(argv[i], "2147483647", 10) > 0))
+			|| (ft_strlen(argv[i]) == 10
+				&& ft_strncmp(argv[i], "4294967295", 10) > 0))
 		{
 			write (2, "Too big number\n", 15);
 			exit(1);
