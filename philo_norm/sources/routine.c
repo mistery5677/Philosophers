@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/10 16:35:00 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/10 20:58:54 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ static int	do_routine(t_philo *philo)
 	if (check_sim(philo) == 1)
 		return (1);
 	ft_sleep(philo);
-	if (check_sim(philo) == 1 && philo->data->time_think > 0)
+	if (check_sim(philo) == 1)
 		return (1);
-	thinking(philo);
+	if (philo->data->time_think > 0)
+		thinking(philo);
 	return (0);
 }
 
