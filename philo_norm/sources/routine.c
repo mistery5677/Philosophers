@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/10 16:26:23 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:35:00 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	do_routine(t_philo *philo)
 	if (check_sim(philo) == 1)
 		return (1);
 	ft_sleep(philo);
-	if (check_sim(philo) == 1)
+	if (check_sim(philo) == 1 && philo->data->time_think > 0)
 		return (1);
 	thinking(philo);
 	return (0);
@@ -43,6 +43,7 @@ static void	eat_alone(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	printf("%d %d has taken a fork\n", current_time_ml(philo), philo->name);
+	usleep(philo->data->time_die * 1000);
 	printf("%d %d died\n", philo->data->time_die, philo->name);
 	pthread_mutex_unlock(philo->r_fork);
 }
