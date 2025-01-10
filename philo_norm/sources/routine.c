@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:01:35 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/06 23:20:53 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/10 16:26:23 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	eat_alone(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	printf("%d %d has taken a fork\n", current_time_ml(philo), philo->name);
-	printf("%d %d died\n", philo->data->time_eat, philo->name);
+	printf("%d %d died\n", philo->data->time_die, philo->name);
 	pthread_mutex_unlock(philo->r_fork);
 }
 

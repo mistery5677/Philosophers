@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:27:49 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/09 14:31:34 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/10 15:34:53 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (check_args(argc, argv) == -1)
+	if (argc < 5 || argc > 6)
+	{
+		write (2, "Wrong number of arguments\n", 26);
+		return (-1);
+	}
+	if (check_args(argv) == -1)
 		return (-1);
 	if (seat_the_philos(&data, argv) == -1)
 	{

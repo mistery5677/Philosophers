@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:37:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/09 14:05:40 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/10 16:24:32 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,14 @@ static void	check_limits(char **argv)
 	}
 }
 
-int	check_args(int argc, char **argv)
+int	check_args(char **argv)
 {
-	check_limits(argv);
-	if (argc < 5 || argc > 6)
-	{
-		write (2, "Wrong number of arguments\n", 26);
-		return (-1);
-	}
-	else if (check_argv(argv) == -1)
+	if (check_argv(argv) == -1)
 	{
 		write (2, "Bad input\n", 10);
 		return (-1);
 	}
+	check_limits(argv);
 	return (0);
 }
 

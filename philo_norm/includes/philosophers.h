@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:18:04 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/07 00:10:01 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/10 15:31:01 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_data
 }	t_data;
 
 /*   CHECK ERROR   */
-int					check_args(int argc, char **argv);
+int					check_args(char **argv);
 int					check_status(t_data *data);
 
 /*   UTILS   */
