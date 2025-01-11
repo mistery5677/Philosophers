@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:28:14 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/05 20:44:31 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/11 00:58:52 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,14 @@ void	ft_sleep(t_philo *philo)
 	finished = philo->data->philos_finished;
 	died = philo->data->died;
 	pthread_mutex_unlock(&philo->data->sync);
+	if (died)
+		return ;
 	if (finished != philo->data->philos_num
 		&& philo->last_meal != 0 && died == 0)
 	{
 		pthread_mutex_lock(&philo->data->write);
-		printf("%d %d is sleeping\n", current_time_ml(philo), philo->name);
+		if (!philo->data->died)
+			printf("%d %d is sleeping\n", current_time_ml(philo), philo->name);
 		pthread_mutex_unlock(&philo->data->write);
 		ft_usleep(philo, philo->data->time_sleep);
 	}
@@ -88,11 +91,14 @@ void	thinking(t_philo *philo)
 	finished = philo->data->philos_finished;
 	died = philo->data->died;
 	pthread_mutex_unlock(&philo->data->sync);
+	if (died)
+		return ;
 	if (philo->data->time_think != 0
 		&& died == 0 && finished != philo->data->philos_num)
 	{
 		pthread_mutex_lock(&philo->data->write);
-		printf("%d %d is thinking\n", current_time_ml(philo), philo->name);
+		if (!philo->data->died)
+			printf("%d %d is thinking\n", current_time_ml(philo), philo->name);
 		pthread_mutex_unlock(&philo->data->write);
 		ft_usleep(philo, philo->data->time_think);
 	}
